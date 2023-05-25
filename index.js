@@ -1,75 +1,161 @@
-const data = [
-  { id: 1, name: "Apple", price: 10 },
-  { id: 2, name: "Orange", price: 40 },
-  { id: 3, name: "Kiwi", price: 90 },
-  { id: 4, name: "Watermelon", price: 100 },
-];
+let minPriceFilter = 1;
+let maxPriceFilter = 1000;
 
-let minFilter = 1;
-let maxFilter = 200;
+let minRoomsFilter = 1;
+let maxRoomsFilter = 10;
 
-const minInput = document.querySelector(".min");
-minInput.value = minFilter;
+let minAreaFilter = 1;
+let maxAreaFilter = 100;
 
-const maxInput = document.querySelector(".max");
-maxInput.value = maxFilter;
+const minPriceInput = document.querySelector(".minPrice");
+minPriceInput.value = minPriceFilter;
 
-const minSpan = document.querySelector(".min-value");
-minSpan.innerText = minInput.value;
+const maxPriceInput = document.querySelector(".maxPrice");
+maxPriceInput.value = maxPriceFilter;
 
-const maxSpan = document.querySelector(".max-value");
-maxSpan.innerText = maxInput.value;
+const minRoomsInput = document.querySelector(".minRooms");
+minRoomsInput.value = minRoomsFilter;
 
-minInput.addEventListener("change", (e) => {
-  let value = e.target.value;
+const maxRoomsInput = document.querySelector(".maxRooms");
+maxRoomsInput.value = maxRoomsFilter;
 
-  if (parseInt(value) > parseInt(maxInput.value)) {
-    value = maxInput.value;
-    e.target.value = maxInput.value;
-  }
+const minAreaInput = document.querySelector(".minArea");
+minAreaInput.value = minAreaFilter;
 
-  minSpan.innerText = value;
-  minFilter = value
+const maxAreaInput = document.querySelector(".maxArea");
+maxAreaInput.value = maxAreaFilter;
 
-  renderProducts()
+const minPriceSpan = document.querySelector(".min-price");
+minPriceSpan.innerText = minPriceInput.value;
+
+const maxPriceSpan = document.querySelector(".max-price");
+maxPriceSpan.innerText = maxPriceInput.value;
+
+const minRoomsSpan = document.querySelector(".min-rooms");
+minRoomsSpan.innerText = minRoomsInput.value;
+
+const maxRoomsSpan = document.querySelector(".max-rooms");
+maxRoomsSpan.innerText = maxRoomsInput.value;
+
+const minAreaSpan = document.querySelector(".min-area");
+minAreaSpan.innerText = minAreaInput.value;
+
+const maxAreaSpan = document.querySelector(".max-area");
+maxAreaSpan.innerText = maxAreaInput.value;
+
+minPriceInput.addEventListener("change", (e) => {
+    let value = e.target.value;
+
+    if (parseInt(value) > parseInt(maxPriceInput.value)) {
+        value = maxPriceInput.value;
+        e.target.value = maxPriceInput.value;
+    }
+
+    minPriceSpan.innerText = value;
+    minPriceFilter = value
+
+    renderProducts()
 });
 
-maxInput.addEventListener("change", (e) => {
-  console.log(e.target.value);
+maxPriceInput.addEventListener("change", (e) => {
+    console.log(e.target.value);
 
-  let value = e.target.value;
+    let value = e.target.value;
 
-  if (parseInt(value) < parseInt(minInput.value)) {
-    value = minInput.value;
-    e.target.value = minInput.value;
-  }
+    if (parseInt(value) < parseInt(minPriceInput.value)) {
+        value = minPriceInput.value;
+        e.target.value = minPriceInput.value;
+    }
 
-  maxSpan.innerText = value;
-  maxFilter = value
+    maxPriceSpan.innerText = value;
+    maxPriceFilter = value
 
-  renderProducts()
+    renderProducts()
+});
+
+minRoomsInput.addEventListener("change", (e) => {
+    let value = e.target.value;
+
+    if (parseInt(value) > parseInt(maxRoomsInput.value)) {
+        value = maxRoomsInput.value;
+        e.target.value = maxRoomsInput.value;
+    }
+
+    minRoomsSpan.innerText = value;
+    minRoomsFilter = value
+
+    renderProducts()
+});
+
+maxRoomsInput.addEventListener("change", (e) => {
+    console.log(e.target.value);
+
+    let value = e.target.value;
+
+    if (parseInt(value) < parseInt(minRoomsInput.value)) {
+        value = minRoomsInput.value;
+        e.target.value = minRoomsInput.value;
+    }
+
+    maxRoomsSpan.innerText = value;
+    maxRoomsFilter = value
+
+    renderProducts()
+});
+
+minAreaInput.addEventListener("change", (e) => {
+    let value = e.target.value;
+
+    if (parseInt(value) > parseInt(maxAreaInput.value)) {
+        value = maxAreaInput.value;
+        e.target.value = maxAreaInput.value;
+    }
+
+    minAreaSpan.innerText = value;
+    minAreaFilter = value
+
+    renderProducts()
+});
+
+maxAreaInput.addEventListener("change", (e) => {
+    console.log(e.target.value);
+
+    let value = e.target.value;
+
+    if (parseInt(value) < parseInt(minAreaInput.value)) {
+        value = minAreaInput.value;
+        e.target.value = minAreaInput.value;
+    }
+
+    maxAreaSpan.innerText = value;
+    maxAreaFilter = value
+
+    renderProducts()
 });
 
 function generateCard(product) {
-  const div = document.createElement("div");
-  div.innerHTML = ` <div class="card">
-  <span>Title: <span class="title">${product.name}</span></span>
-  <span>Price: <span class="price">${product.price}</span></span>
-</div>`;
-return div
+    const div = document.createElement("div");
+    div.innerHTML = ` <div class="card">
+    <span> <span class="price">${product.price}AZN</span></span>
+    <span> <span class="rooms">${product.rooms}rooms</span></span>
+    <span> <span class="area">${product.area}kv</span></span>
+  </div>`;
+    return div
 }
 
 function renderProducts() {
-  const container = document.querySelector(".container");
-  container.innerHTML = ``
+    const container = document.querySelector(".container");
+    container.innerHTML = ``
 
-  let _data = [...data];
+    let _data = [...data];
 
-  _data = _data.filter((x) => x.price >= minFilter && x.price <= maxFilter);
-  _data.forEach((x) => {
-    const card = generateCard(x);
-    container.append(card)
-  });
+    _data = _data.filter((x) => x.price >= minPriceFilter && x.price <= maxPriceFilter);
+    _data = _data.filter((x) => x.rooms >= minRoomsFilter && x.rooms <= maxRoomsFilter);
+    _data = _data.filter((x) => x.area >= minAreaFilter && x.area <= maxAreaFilter);
+    _data.forEach((x) => {
+        const card = generateCard(x);
+        container.append(card)
+    });
 }
 
 

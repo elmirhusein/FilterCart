@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./index.css">
     <title>Document</title>
-  </head>
-  <body>
+</head>
+
+<body>
     
-    <span>min</span><input class="min" type="range" step="1" min=1 max=200><span class="min-value"></span>
-    <br>
-    <span>max</span><input class="max" type="range" step="1" min=1 max=200><span class="max-value"></span>
+    <div class="spans">
+        <span>Min price</span><input class="minPrice" type="range" step="1" min=1 max=1000><span class="min-price"></span>
+        <span>Max price</span><input class="maxPrice" type="range" step="1" min=1 max=1000><span class="max-price"></span>
+        <span>Min rooms</span><input class="minRooms" type="range" step="1" min=1 max=10><span class="min-rooms"></span>
+        <span>Max rooms</span><input class="maxRooms" type="range" step="1" min=1 max=10><span class="max-rooms"></span>
+        <span>Min area</span><input class="minArea" type="range" step="1" min=1 max=100><span class="min-area"></span>
+        <span>Max area</span><input class="maxArea" type="range" step="1" min=1 max=100><span class="max-area"></span>
+    </div>
     
     <div class="container">
-       
+        
     </div>
+    
+</body>
+<script src="./index.js" defer></script>
+<script src="./data.js" defer></script>
 
-  </body>
-  <script src="./index.js"></script>
 </html>
